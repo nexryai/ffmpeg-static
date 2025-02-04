@@ -299,7 +299,7 @@ arch=$(uname -m)
 os=$(uname -s)
 if [ "$arch" = "aarch64" ] || [ "$arch" = "arm64" ]; then
   if [ "$os" = "Darwin" ]; then
-    lame_build_target="--build=aarch64-apple-darwin23.6.0"
+    lame_build_target="--build=arm-apple-darwin23.6.0"
   else
     lame_build_target="--build=arm-linux"
   fi
