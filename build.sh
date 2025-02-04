@@ -369,8 +369,7 @@ if [ "$platform" = "linux" ]; then
     --enable-libfdk-aac \
     --enable-libfreetype \
     --enable-libmp3lame \
-    --enable-libopencore-amrnb \
-    --enable-libopencore-amrwb \
+    --enable--amrnb \
     --enable-libopenjpeg \
     --enable-libopus \
     --enable-libsoxr \
@@ -402,8 +401,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libfdk-aac \
     --enable-libfreetype \
     --enable-libmp3lame \
-    --enable-libopencore-amrnb \
-    --enable-libopencore-amrwb \
     --enable-libopenjpeg \
     --enable-libopus \
     --enable-libsoxr \
