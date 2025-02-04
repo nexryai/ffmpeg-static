@@ -27,10 +27,6 @@ jobs:
         sudo xcode-select --switch /Applications/Xcode_15.2.app
         sudo xcodebuild -license accept
 
-    - name: Install Xcode Command Line Tools
-      run: |
-        xcode-select --install
-
     - name: Install dependencies
       run: |
         brew install openssl frei0r sdl2 wget
