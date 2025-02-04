@@ -362,7 +362,6 @@ if [ "$platform" = "linux" ]; then
     --bindir="$BIN_DIR" \
     --enable-pic \
     --enable-fontconfig \
-    --enable-frei0r \
     --enable-gpl \
     --enable-version3 \
     --enable-libass \
