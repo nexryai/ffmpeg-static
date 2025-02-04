@@ -12,9 +12,9 @@ uname -mpi | grep -qE 'x86|i386|i686' && is_x86=1 || is_x86=0
 export CC='clang'
 export CXX='clang++'
 export CFLAGS='-flto=thin -mbranch-protection=bti+pac-ret -fPIE -fstack-protector-strong'
-export CXXFLAGS='${CFLAGS}'
-export CFLAG='${CFLAGS}'
-export CPPFLAGS='${CFLAGS}'
+export CXXFLAGS=${CFLAGS}
+export CFLAG=${CFLAGS}
+export CPPFLAGS=${CFLAGS}
 
 while getopts 'j:Bd' OPTION
 do
