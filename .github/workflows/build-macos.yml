@@ -1,0 +1,43 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+      with:
+        test-bot: false
+
+    - name: List available Xcode versions
+      run: ls /Applications | grep Xcode
+
+    - name: Install Xcode
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_15.2.app
+        sudo xcodebuild -license accept
+
+    - name: Install Xcode Command Line Tools
+      run: |
+        xcode-select --install
+
+    - name: Install dependencies
+      run: |
+        brew install openssl frei0r sdl2 wget
+
+    - name: Build project
+      run: |
+        ./build.sh -j4
