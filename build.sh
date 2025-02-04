@@ -109,18 +109,6 @@ download \
   "https://github.com/Haivision/srt/archive/refs/tags/"
 
 download \
-  "x264-stable.tar.gz" \
-  "" \
-  "nil" \
-  "https://code.videolan.org/videolan/x264/-/archive/stable/"
-
-download \
-  "x265_3.4.tar.gz" \
-  "" \
-  "e37b91c1c114f8815a3f46f039fe79b5" \
-  "http://download.openpkg.org/components/cache/x265/"
-
-download \
   "v0.1.6.tar.gz" \
   "fdk-aac.tar.gz" \
   "223d5f579d29fb0d019a775da4e0e061" \
@@ -271,22 +259,6 @@ elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR
 fi
 PATH="$BIN_DIR:$PATH" make -j $jval
-make install
-
-echo "*** Building x264 ***"
-cd $BUILD_DIR/x264*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-[ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl --enable-pic
-PATH="$BIN_DIR:$PATH" make -j $jval
-make install
-
-echo "*** Building x265 ***"
-cd $BUILD_DIR/x265*
-cd build/linux
-[ $rebuild -eq 1 ] && find . -mindepth 1 ! -name 'make-Makefiles.bash' -and ! -name 'multilib.sh' -exec rm -r {} +
-PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR" -DENABLE_SHARED:BOOL=OFF -DSTATIC_LINK_CRT:BOOL=ON -DENABLE_CLI:BOOL=OFF ../../source
-sed -i 's/-lgcc_s/-lgcc_eh/g' x265.pc
-make -j $jval
 make install
 
 echo "*** Building fdk-aac ***"
@@ -495,8 +467,6 @@ if [ "$platform" = "linux" ]; then
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
-    --enable-libx264 \
-    --enable-libx265 \
     --enable-libxvid \
     --enable-libzimg \
     --enable-nonfree \
@@ -535,8 +505,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
-    --enable-libx264 \
-    --enable-libx265 \
     --enable-libxvid \
     --enable-libzimg \
     --enable-nonfree \
