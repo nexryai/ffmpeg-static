@@ -158,12 +158,6 @@ download \
   "https://sourceforge.net/projects/soxr/files/"
 
 download \
-  "release-0.98b.tar.gz" \
-  "vid.stab-release-0.98b.tar.gz" \
-  "299b2f4ccd1b94c274f6d94ed4f1c5b8" \
-  "https://github.com/georgmartius/vid.stab/archive/"
-
-download \
   "release-2.7.4.tar.gz" \
   "zimg-release-2.7.4.tar.gz" \
   "1757dcc11590ef3b5a56c701fd286345" \
@@ -327,18 +321,6 @@ PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_
 make -j $jval
 make install
 
-echo "*** Building libvidstab ***"
-cd $BUILD_DIR/vid.stab-release-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-if [ "$platform" = "linux" ]; then
-  sed -i "s/vidstab SHARED/vidstab STATIC/" ./CMakeLists.txt
-elif [ "$platform" = "darwin" ]; then
-  sed -i "s/vidstab SHARED/vidstab STATIC/" ./CMakeLists.txt
-fi
-PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
-make -j $jval
-make install
-
 echo "*** Building openjpeg ***"
 cd $BUILD_DIR/openjpeg-*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -452,7 +434,6 @@ if [ "$platform" = "linux" ]; then
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libtheora \
-    --enable-libvidstab \
     --enable-libvo-amrwbenc \
     --enable-libvorbis \
     --enable-libvpx \
@@ -490,7 +471,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libopus \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libvidstab \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
