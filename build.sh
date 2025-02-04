@@ -293,10 +293,22 @@ make install
 
 echo "*** Building mp3lame ***"
 cd $BUILD_DIR/lame*
+
 # The lame build script does not recognize aarch64, so need to set it manually
-uname -a | grep -q 'aarch64' && lame_build_target="--build=arm-linux" || lame_build_target=''
+arch=$(uname -m)
+os=$(uname -s)
+if [ "$arch" = "aarch64" ] || [ "$arch" = "arm64" ]; then
+  if [ "$os" = "Darwin" ]; then
+    lame_build_target="--build=aarch64-apple-darwin23.6.0"
+  else
+    lame_build_target="--build=arm-linux"
+  fi
+else
+  lame_build_target=""
+fi
+
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-[ ! -f config.status ] && ./configure --disable-debug --prefix=$TARGET_DIR --enable-nasm --disable-shared
+[ ! -f config.status ] && ./configure --disable-debug --prefix=$TARGET_DIR --enable-nasm --disable-shared $lame_build_target
 make
 make install
 
