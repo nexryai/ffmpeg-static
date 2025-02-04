@@ -333,6 +333,8 @@ make install
 echo "*** Building libvorbis ***"
 cd $BUILD_DIR/vorbis*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+# https://github.com/xiph/vorbis/issues/107
+sed -i '' 's/-force_cpusubtype_ALL//g' configure.ac
 ./autogen.sh
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
