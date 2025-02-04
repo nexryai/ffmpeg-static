@@ -193,11 +193,6 @@ download \
   "586ca7cc091d26fd0a4c26308950ca51" \
   "https://github.com/FFmpeg/FFmpeg/archive"
 
-download \
-  "SDL2-2.0.22.tar.gz" \
-  "SDL2-2.0.22.tar.gz" \
-  "40aedb499cb2b6f106d909d9d97f869a" \
-  "https://github.com/libsdl-org/SDL/releases/download/release-2.0.22"
 
 [ $download_only -eq 1 ] && exit 0
 
@@ -356,14 +351,6 @@ cd $BUILD_DIR/speex*
 make -j $jval
 make install
 
-echo "*** Building libsdl ***"
-cd $BUILD_DIR/SDL*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./autogen.sh
-./configure --prefix=$TARGET_DIR --disable-shared
-make -j $jval
-make install
-
 echo "*** Building RIST ***"
 cd $BUILD_DIR
 rm -rf librist
@@ -404,7 +391,6 @@ if [ "$platform" = "linux" ]; then
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
     --enable-pic \
-    --enable-ffplay \
     --enable-fontconfig \
     --enable-frei0r \
     --enable-gpl \
@@ -441,7 +427,6 @@ elif [ "$platform" = "darwin" ]; then
     --extra-ldexeflags="-Bstatic" \
     --bindir="$BIN_DIR" \
     --enable-pic \
-    --enable-ffplay \
     --enable-fontconfig \
     --enable-frei0r \
     --enable-gpl \
