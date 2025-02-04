@@ -217,16 +217,16 @@ if [ $is_x86 -eq 1 ]; then
     make install
 fi
 
-echo "*** Building OpenSSL ***"
-cd $BUILD_DIR/openssl*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-if [ "$platform" = "darwin" ]; then
-  PATH="$BIN_DIR:$PATH" ./Configure darwin64-x86_64-cc --prefix=$TARGET_DIR
-elif [ "$platform" = "linux" ]; then
-  PATH="$BIN_DIR:$PATH" ./config --prefix=$TARGET_DIR
-fi
-PATH="$BIN_DIR:$PATH" make -j $jval
-make install
+# echo "*** Building OpenSSL ***"
+# cd $BUILD_DIR/openssl*
+# [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+# if [ "$platform" = "darwin" ]; then
+#   PATH="$BIN_DIR:$PATH" ./Configure darwin64-x86_64-cc --prefix=$TARGET_DIR
+# elif [ "$platform" = "linux" ]; then
+#   PATH="$BIN_DIR:$PATH" ./config --prefix=$TARGET_DIR
+# fi
+# PATH="$BIN_DIR:$PATH" make -j $jval
+# make install
 
 echo "*** Building zlib ***"
 cd $BUILD_DIR/zlib*
@@ -386,8 +386,7 @@ if [ "$platform" = "linux" ]; then
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
-    --enable-nonfree \
-    --enable-openssl
+    --enable-nonfree
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
   PKG_CONFIG_PATH="${TARGET_DIR}/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/Cellar/openssl/1.0.2o_1/lib/pkgconfig" ./configure \
@@ -414,8 +413,7 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
-    --enable-nonfree \
-    --enable-openssl
+    --enable-nonfree
 fi
 
 PATH="$BIN_DIR:$PATH" make -j $jval
