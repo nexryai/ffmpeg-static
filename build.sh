@@ -152,12 +152,6 @@ download \
   "https://github.com/webmproject/libvpx/archive"
 
 download \
-  "rtmpdump-2.3.tgz" \
-  "" \
-  "eb961f31cd55f0acf5aad1a7b900ef59" \
-  "https://rtmpdump.mplayerhq.hu/download/"
-
-download \
   "soxr-0.1.2-Source.tar.xz" \
   "" \
   "0866fc4320e26f47152798ac000de1c0" \
@@ -326,21 +320,6 @@ cd $BUILD_DIR/libvpx*
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
-echo "*** Building librtmp ***"
-cd $BUILD_DIR/rtmpdump-*
-cd librtmp
-[ $rebuild -eq 1 ] && make distclean || true
-
-# there's no configure, we have to edit Makefile directly
-if [ "$platform" = "linux" ]; then
-  sed -i "/INC=.*/d" ./Makefile # Remove INC if present from previous run.
-  sed -i "s/prefix=.*/prefix=${TARGET_DIR_SED}\nINC=-I\$(prefix)\/include/" ./Makefile
-  sed -i "s/SHARED=.*/SHARED=no/" ./Makefile
-elif [ "$platform" = "darwin" ]; then
-  sed -i "s/prefix=./prefix=${TARGET_DIR_SED}/" ./Makefile
-fi
-make install_base
-
 echo "*** Building libsoxr ***"
 cd $BUILD_DIR/soxr-*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -470,7 +449,6 @@ if [ "$platform" = "linux" ]; then
     --enable-libopencore-amrwb \
     --enable-libopenjpeg \
     --enable-libopus \
-    --enable-librtmp \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libtheora \
@@ -510,7 +488,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libopencore-amrwb \
     --enable-libopenjpeg \
     --enable-libopus \
-    --enable-librtmp \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libvidstab \
