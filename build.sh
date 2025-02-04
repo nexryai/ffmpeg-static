@@ -234,7 +234,7 @@ cd $BUILD_DIR/zlib*
 if [ "$platform" = "linux" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR
 elif [ "$platform" = "darwin" ]; then
-  [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR
+  [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR || (cat config.log && ls && exit 1)
 fi
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
