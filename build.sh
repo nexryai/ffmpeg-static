@@ -103,12 +103,6 @@ download \
   "https://github.com/madler/zlib/archive/"
 
 download \
-  "v1.5.3.tar.gz" \
-  "" \
-  "df8213a3669dd846ddaad0fa1e9f417b" \
-  "https://github.com/Haivision/srt/archive/refs/tags/"
-
-download \
   "v0.1.6.tar.gz" \
   "fdk-aac.tar.gz" \
   "223d5f579d29fb0d019a775da4e0e061" \
@@ -351,30 +345,6 @@ cd $BUILD_DIR/speex*
 make -j $jval
 make install
 
-echo "*** Building RIST ***"
-cd $BUILD_DIR
-rm -rf librist
-git clone https://code.videolan.org/rist/librist.git
-cd $BUILD_DIR/librist*
-git checkout v0.2.10
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-mkdir -p build
-cd build
-meson --default-library=static .. --prefix=$TARGET_DIR --bindir="../bin/" --libdir="$TARGET_DIR/lib"
-ninja
-ninja install
-
-echo "*** Building SRT ***"
-cd $BUILD_DIR/srt*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-mkdir -p build
-cd build
-cmake -DENABLE_APPS=OFF -DCMAKE_INSTALL_PREFIX=$TARGET_DIR -DENABLE_C_DEPS=ON -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DOPENSSL_USE_STATIC_LIBS=ON ..
-sed -i 's/-lgcc_s/-lgcc_eh/g' haisrt.pc
-sed -i 's/-lgcc_s/-lgcc_eh/g' srt.pc
-make
-make install
-
 # FFMpeg
 echo "*** Building FFmpeg ***"
 cd $BUILD_DIR/FFmpeg*
@@ -413,9 +383,7 @@ if [ "$platform" = "linux" ]; then
     --enable-libwebp \
     --enable-libxvid \
     --enable-nonfree \
-    --enable-openssl \
-    --enable-librist \
-    --enable-libsrt
+    --enable-openssl
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
   PKG_CONFIG_PATH="${TARGET_DIR}/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/Cellar/openssl/1.0.2o_1/lib/pkgconfig" ./configure \
@@ -447,9 +415,7 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libwebp \
     --enable-libxvid \
     --enable-nonfree \
-    --enable-openssl \
-    --enable-librist \
-    --enable-libsrt
+    --enable-openssl
 fi
 
 PATH="$BIN_DIR:$PATH" make -j $jval
