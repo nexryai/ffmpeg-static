@@ -367,8 +367,9 @@ if [ "$platform" = "linux" ]; then
     --extra-libs="-lpthread -lm -lz" \
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
+    --disable-network \
+    --disable-ffplay \
     --enable-pic \
-    --enable-fontconfig \
     --enable-gpl \
     --enable-version3 \
     --enable-libass \
@@ -397,8 +398,9 @@ elif [ "$platform" = "darwin" ]; then
     --extra-ldflags="-L$TARGET_DIR/lib" \
     --extra-ldexeflags="-Bstatic" \
     --bindir="$BIN_DIR" \
+    --disable-network \
+    --disable-ffplay \
     --enable-pic \
-    --enable-fontconfig \
     --enable-gpl \
     --enable-version3 \
     --enable-libass \
@@ -415,6 +417,9 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libwebp \
     --enable-nonfree
 fi
+
+echo "============ FFMPEG config.log ============"
+cat ffbuild/config.log
 
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
