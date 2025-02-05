@@ -419,12 +419,13 @@ elif [ "$platform" = "darwin" ]; then
     --enable-nonfree
 fi
 
+PATH="$BIN_DIR:$PATH" make -j $jval
+
 echo "============ FFMPEG binary info ============"
 # cat ffbuild/config.log
 otool -hv ./ffmpeg*
 otool -L ./ffmpeg*
 
-PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 make distclean
 hash -r
