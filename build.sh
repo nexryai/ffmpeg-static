@@ -431,3 +431,5 @@ otool -L ./ffmpeg*
 make install
 make distclean
 hash -r
+
+ls -alh
