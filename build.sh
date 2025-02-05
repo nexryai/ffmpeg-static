@@ -406,9 +406,11 @@ elif [ "$platform" = "darwin" ]; then
     --bindir="$BIN_DIR" \
     --disable-network \
     --disable-ffplay \
+    --disable-ffprobe \
     --disable-libfreetype \
     --disable-libfontconfig \
     --disable-libfribidi \
+    --disable-libharfbuzz \
     --disable-libxcb \
     --disable-xlib \
     --disable-sdl2 \
