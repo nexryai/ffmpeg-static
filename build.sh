@@ -372,6 +372,8 @@ if [ "$platform" = "linux" ]; then
     --disable-ffplay \
     --disable-libfreetype \
     --disable-libfribidi \
+    --disable-libxcb \
+    --disable-xlib \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
@@ -401,6 +403,8 @@ elif [ "$platform" = "darwin" ]; then
     --disable-ffplay \
     --disable-libfreetype \
     --disable-libfribidi \
+    --disable-libxcb \
+    --disable-xlib \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
