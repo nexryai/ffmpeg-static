@@ -121,25 +121,6 @@ download \
   "223d5f579d29fb0d019a775da4e0e061" \
   "https://github.com/mstorsjo/fdk-aac/archive"
 
-# libass dependency
-download \
-  "harfbuzz-1.4.6.tar.bz2" \
-  "" \
-  "e246c08a3bac98e31e731b2a1bf97edf" \
-  "https://www.freedesktop.org/software/harfbuzz/release/"
-
-download \
-  "fribidi-1.0.2.tar.bz2" \
-  "" \
-  "bd2eb2f3a01ba11a541153f505005a7b" \
-  "https://github.com/fribidi/fribidi/releases/download/v1.0.2/"
-
-download \
-  "0.13.6.tar.gz" \
-  "libass-0.13.6.tar.gz" \
-  "nil" \
-  "https://github.com/libass/libass/archive/"
-
 download \
   "lame-3.99.5.tar.gz" \
   "" \
@@ -253,28 +234,6 @@ autoreconf -fiv
 make -j $jval
 make install
 
-echo "*** Building harfbuzz ***"
-cd $BUILD_DIR/harfbuzz-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./configure --prefix=$TARGET_DIR --disable-shared --enable-static
-make -j $jval
-make install
-
-echo "*** Building fribidi ***"
-cd $BUILD_DIR/fribidi-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./configure --prefix=$TARGET_DIR --disable-shared --enable-static --disable-docs
-make -j $jval
-make install
-
-echo "*** Building libass ***"
-cd $BUILD_DIR/libass-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-./autogen.sh
-./configure --prefix=$TARGET_DIR --disable-shared
-make -j $jval
-make install
-
 echo "*** Building mp3lame ***"
 cd $BUILD_DIR/lame*
 
@@ -377,12 +336,12 @@ if [ "$platform" = "linux" ]; then
     --disable-ffplay \
     --disable-libfreetype \
     --disable-libfribidi \
+    --disable-libharfbuzz \
     --disable-libxcb \
     --disable-xlib \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
-    --enable-libass \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
@@ -418,7 +377,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
-    --enable-libass \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
