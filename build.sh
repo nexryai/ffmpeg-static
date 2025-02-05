@@ -245,7 +245,7 @@ git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git
 cd SVT-AV1 && git checkout v2.3.0
 
 # https://gitlab.com/AOMediaCodec/SVT-AV1/-/issues/2222
-echo -e "\nif(ENABLE_NEON_I8MM)\n    add_compile_options(-march=armv8.2-a+dotprod+i8mm)\nendif()" >> CMakeLists.txt
+echo "\nif(ENABLE_NEON_I8MM)\n    add_compile_options(-march=armv8.2-a+dotprod+i8mm)\nendif()" >> CMakeLists.txt
 cat CMakeLists.txt
 
 cd Build
