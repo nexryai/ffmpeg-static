@@ -175,12 +175,6 @@ download \
   "4bec86331abef56129f9d1c994823f03" \
   "https://github.com/xiph/speex/archive/"
 
-download \
-  "n6.0.tar.gz" \
-  "ffmpeg6.0.tar.gz" \
-  "586ca7cc091d26fd0a4c26308950ca51" \
-  "https://github.com/FFmpeg/FFmpeg/archive"
-
 
 [ $download_only -eq 1 ] && exit 0
 
@@ -344,7 +338,10 @@ make install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
-cd $BUILD_DIR/FFmpeg*
+cd $BUILD_DIR
+git clone https://github.com/FFmpeg/FFmpeg
+cd FFmpeg
+git checkout n7.1
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 
 if [ "$platform" = "linux" ]; then
