@@ -353,6 +353,7 @@ if [ "$platform" = "linux" ]; then
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
+    --enable-libaom \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
@@ -387,6 +388,7 @@ elif [ "$platform" = "darwin" ]; then
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
+    --enable-libaom \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
