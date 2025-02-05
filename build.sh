@@ -428,7 +428,4 @@ make distclean
 hash -r
 
 cd ../..
-ls -alh target
-
-echo "list bin"
-ls -alh bin
+ls -alh target/bin
