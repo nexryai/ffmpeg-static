@@ -370,20 +370,18 @@ if [ "$platform" = "linux" ]; then
     --bindir="$BIN_DIR" \
     --disable-network \
     --disable-ffplay \
+    --disable-libfreetype \
+    --disable-libfribidi \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
     --enable-libass \
-    --enable-libfribidi \
     --enable-libfdk-aac \
-    --enable-libfreetype \
     --enable-libmp3lame \
-    --enable--amrnb \
     --enable-libopenjpeg \
     --enable-libopus \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libtheora \
     --enable-libvo-amrwbenc \
     --enable-libvorbis \
     --enable-libvpx \
@@ -401,13 +399,13 @@ elif [ "$platform" = "darwin" ]; then
     --bindir="$BIN_DIR" \
     --disable-network \
     --disable-ffplay \
+    --disable-libfreetype \
+    --disable-libfribidi \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
     --enable-libass \
-    --enable-libfribidi \
     --enable-libfdk-aac \
-    --enable-libfreetype \
     --enable-libmp3lame \
     --enable-libopenjpeg \
     --enable-libopus \
