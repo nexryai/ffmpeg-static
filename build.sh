@@ -242,11 +242,9 @@ echo "*** Building SVT-AV1 ***"
 cd $BUILD_DIR
 rm -rf SVT-AV1
 git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git
-cd SVT-AV1 && git checkout v2.3.0
 
 # https://gitlab.com/AOMediaCodec/SVT-AV1/-/issues/2222
-echo "\nif(ENABLE_NEON_I8MM)\n    add_compile_options(-march=armv8.2-a+dotprod+i8mm)\nendif()" >> CMakeLists.txt
-cat CMakeLists.txt
+cd SVT-AV1 && git checkout v2.2.1
 
 cd Build
 cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR ..
