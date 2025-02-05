@@ -336,7 +336,6 @@ if [ "$platform" = "linux" ]; then
     --disable-ffplay \
     --disable-libfreetype \
     --disable-libfribidi \
-    --disable-libharfbuzz \
     --disable-libxcb \
     --disable-xlib \
     --enable-pic \
@@ -369,7 +368,6 @@ elif [ "$platform" = "darwin" ]; then
     --disable-libfreetype \
     --disable-libfontconfig \
     --disable-libfribidi \
-    --disable-libharfbuzz \
     --disable-libxcb \
     --disable-xlib \
     --disable-sdl2 \
