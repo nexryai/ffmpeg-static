@@ -234,7 +234,7 @@ cd aom && git checkout v3.11.0 && cd ..
 mkdir aom_build
 cd aom_build
 
-cmake ../aom
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DENABLE_DOCS=0 -DENABLE_TESTS=0 -DENABLE_TESTDATA=0 -DENABLE_TOOLS=0 -DENABLE_EXAMPLES=0 ../aom
 make -j $jval
 make install
 
