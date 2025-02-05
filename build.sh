@@ -247,7 +247,7 @@ git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git
 cd SVT-AV1 && git checkout v2.2.1
 
 cd Build
-cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR ..
+cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR -DBUILD_SHARED_LIBS=OFF  ..
 make -j $jval
 make install
 
