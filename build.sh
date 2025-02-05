@@ -226,6 +226,18 @@ fi
 # PATH="$BIN_DIR:$PATH" make -j $jval
 # make install
 
+echo "*** Building aom ***"
+cd $BUILD_DIR
+rm -rf aom aom_build
+git clone https://aomedia.googlesource.com/aom
+cd aom && git checkout v3.11.0 && cd ..
+mkdir aom_build
+cd aom_build
+
+cmake ../aom
+make -j $jval
+make install
+
 echo "*** Building fdk-aac ***"
 cd $BUILD_DIR/fdk-aac*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
