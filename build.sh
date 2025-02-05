@@ -11,11 +11,7 @@ uname -mpi | grep -qE 'x86|i386|i686' && is_x86=1 || is_x86=0
 
 export CC='clang'
 export CXX='clang++'
-export CFLAGS='-flto=thin -mbranch-protection=bti+pac-ret -fPIE -fPIC -fstack-protector-strong'
-export CXXFLAGS=${CFLAGS}
-export CFLAG=${CFLAGS}
-export CPPFLAGS=${CFLAGS}
-export LDFLAGS='-static-pie'
+# export CFLAGS='-flto=thin -mbranch-protection=bti+pac-ret -fPIE -fPIC -fstack-protector-strong'
 
 while getopts 'j:Bd' OPTION
 do
@@ -52,6 +48,15 @@ fi
 cd `dirname $0`
 ENV_ROOT=`pwd`
 . ./env.source
+
+export CXXFLAGS=${CFLAGS}
+export CFLAG=${CFLAGS}
+export CPPFLAGS=${CFLAGS}
+export LDFLAGS='-static-pie'
+
+echo "============ FLAGS ============"
+echo "CFLAG=${CFLAGS}"
+echo "LDFLAGS=${LDFLAGS}"
 
 # check operating system
 OS=`uname`
