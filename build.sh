@@ -407,9 +407,11 @@ elif [ "$platform" = "darwin" ]; then
     --disable-network \
     --disable-ffplay \
     --disable-libfreetype \
+    --disable-libfontconfig \
     --disable-libfribidi \
     --disable-libxcb \
     --disable-xlib \
+    --disable-shared \
     --enable-pic \
     --enable-gpl \
     --enable-version3 \
