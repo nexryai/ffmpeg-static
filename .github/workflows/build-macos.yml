@@ -38,5 +38,5 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: ffmpeg-static-macos15-arm64
-        path: FFmpeg-n6.0/ffmpeg
+        path: bin/ffmpeg
 
