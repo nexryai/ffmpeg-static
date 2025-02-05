@@ -428,5 +428,5 @@ make install
 make distclean
 hash -r
 
-cd ..
+cd ../..
 ls -alh
