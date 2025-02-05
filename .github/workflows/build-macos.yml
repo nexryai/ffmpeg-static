@@ -29,7 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install openssl frei0r sdl2 automake meson libtool wget libogg
+        brew install openssl frei0r sdl2 automake cmake meson libtool wget libogg
 
     - name: Build project
       run: |
