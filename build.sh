@@ -420,7 +420,6 @@ PATH="$BIN_DIR:$PATH" make -j $jval
 
 ls /Users/runner/work/ffmpeg-static/ffmpeg-static/target/lib/
 echo "============ FFMPEG binary info ============"
-# cat ffbuild/config.log
 otool -hv ./ffmpeg*
 otool -L ./ffmpeg*
 
@@ -429,4 +428,7 @@ make distclean
 hash -r
 
 cd ../..
-ls -alh
+ls -alh target
+
+echo "list bin"
+ls -alh bin
