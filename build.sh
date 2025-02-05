@@ -238,6 +238,16 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR -DENABLE_SHA
 make -j $jval
 make install
 
+echo "*** Building SVT-AV1 ***"
+cd $BUILD_DIR
+rm -rf SVT-AV1
+git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git
+cd SVT-AV1 && git checkout v2.3.0
+cd Build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$TARGET_DIR ..
+make -j $jval
+make install
+
 echo "*** Building fdk-aac ***"
 cd $BUILD_DIR/fdk-aac*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -354,6 +364,7 @@ if [ "$platform" = "linux" ]; then
     --enable-gpl \
     --enable-version3 \
     --enable-libaom \
+    --enable-libsvtav1 \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
@@ -389,6 +400,7 @@ elif [ "$platform" = "darwin" ]; then
     --enable-gpl \
     --enable-version3 \
     --enable-libaom \
+    --enable-libsvtav1 \
     --enable-libfdk-aac \
     --enable-libmp3lame \
     --enable-libopenjpeg \
