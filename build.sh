@@ -411,6 +411,7 @@ elif [ "$platform" = "darwin" ]; then
     --disable-libfribidi \
     --disable-libxcb \
     --disable-xlib \
+    --disable-sdl2 \
     --disable-shared \
     --enable-pic \
     --enable-gpl \
